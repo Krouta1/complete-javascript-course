@@ -1,14 +1,14 @@
 "use strict";
 
 //Lesson - 31: Strict Mode
-let hasDriversLicense = false;
-const passTest = true;
+//let hasDriversLicense = false;
+//const passTest = true;
 
 //  hasDriverLicense = true; // Uncaught ReferenceError: hasDriverLicense is not defined, when in strict mode, without the strict mode, it will not throw an error
-if (passTest) hasDriversLicense = true;
-if (hasDriversLicense) console.log('I can drive :D');
+//if (passTest) hasDriversLicense = true;
+//if (hasDriversLicense) console.log('I can drive :D');
 
-const interface = 'Audio'; // Uncaught SyntaxError: Unexpected strict mode reserved word, when in strict mode, without the strict mode, it will not throw an error
+//const interface = 'Audio'; // Uncaught SyntaxError: Unexpected strict mode reserved word, when in strict mode, without the strict mode, it will not throw an error
 
 //Lesson - 32: Functions
 // function logger (){
@@ -24,3 +24,18 @@ const interface = 'Audio'; // Uncaught SyntaxError: Unexpected strict mode reser
 
 // const appleOrangeJuice = fruitProcessor(4,6)
 // console.log(appleOrangeJuice);
+
+//Lesson - 33: Functions declaration vs expressions
+
+//function calcAge1(birthYear){
+    //return 2037 - birthYear;
+}
+
+// anonymous func (expresion)
+//const calcAge2 = function (birthYear){
+    //return 2037 - birthYear;
+}
+//const age1 = calcAge1(1856)
+//const age2 = calcAge2(1856)
+//console.log(age1,age2);
+
