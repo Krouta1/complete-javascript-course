@@ -36,6 +36,14 @@ const init = function () {
 };
 init();
 
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  currentScore = 0;
+  player0El.classList.toggle('player--active'); //toggle adds class if it's not there and removes it if it is
+  player1El.classList.toggle('player--active');
+};
+
 //Lesson 83 - Rolling dice functionality
 
 btnRoll.addEventListener('click', function () {
@@ -55,7 +63,37 @@ btnRoll.addEventListener('click', function () {
         currentScore;
     } else {
       //Switch to next player
-      //switchPlayer();
+      switchPlayer();
     }
   }
 });
+
+//Lesson 85 - Holding current score
+btnHold.addEventListener('click', function () {
+  if (playing) {
+    //1. Add current score to active player's score
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+
+    //2. Check if player's score is >= 100
+    if (scores[activePlayer] >= 100) {
+      //Finish the game
+      playing = false;
+      diceEl.classList.add('hidden');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      //Switch to the next player
+      switchPlayer();
+    }
+  }
+});
+
+//Lesson 86 - Resetting the game
+
+btnNew.addEventListener('click', init);
