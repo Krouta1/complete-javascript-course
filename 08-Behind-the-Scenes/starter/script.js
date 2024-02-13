@@ -145,3 +145,10 @@
 // }
 // addExpr(2,3)
 // addExpr(2,3,8,9) // args will be in func
+
+// // Lesson 98 - Primitives vs Object (Primitives vs. Reference types)
+//Primitives
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age,oldAge)
