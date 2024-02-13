@@ -34,3 +34,44 @@
 // calcAge(1991)
 // //console.log(age) // Ref error i can look down in scopes, only look up to parent
 // //printAge() // Ref error
+
+// // Lesson 94 - Hoisting and TDZ in Practice
+// // FOR VARIABLES
+// console.log(me)// hoisted to undef
+// console.log(job) //error it is in TDZ (temporal dead zone)
+// console.log(year) //error it is in TDZ
+
+// var me = 'Petr'
+// let job = 'teacher'
+// const year = 1991
+
+// //FOR FUNCTIONS
+
+// console.log(addDecl(2,3)) // result 5 
+// console.log(addExp(2,3)) //error it is in TDZ, cuz func exp is variable
+// console.log(addArrow(2,3)) //error it is in TDZ
+
+// function addDecl(a,b){
+//     return a + b;
+// }
+
+// var addExp = function (a,b){ // if you replace const with var, it will be hoisted but undefined(2,3) is not function so error anyways
+//     return a + b;
+// }
+
+// const addArrow = (a,b) => a +b ;
+
+// //Example
+
+// if(!numProducts) deleteShoppingCart(); // cuz of hoisting at this place numProducts = undef, thats why this line executes.VERY DANGEROUS! Solution is simple don't use var 
+
+// var numProducts = 10;
+
+// function deleteShoppingCart(){
+//     console.log('All products deleted')
+// }
+
+// // var is defined property in window OBJ, let and const not
+// var x = 1;
+// var y = 2;
+// const z = 3;
