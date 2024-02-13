@@ -14,11 +14,11 @@
 //             const firstName = 'John' // lookin to current scope not above, breaking the scope chain. No problem that name is repeating coz the variables are in diff scopes
 //             const string = `Oh, and you're a millenial ${firstName}.`
 //             console.log(string)
-            
+
 //             function add(a,b){
 //                 return a + b
 //             }
-            
+
 //             output = 'NEW OUTPUT' // manipulated variable in aprent scope
 //         }
 //         //console.log(string) // Ref error
@@ -47,7 +47,7 @@
 
 // //FOR FUNCTIONS
 
-// console.log(addDecl(2,3)) // result 5 
+// console.log(addDecl(2,3)) // result 5
 // console.log(addExp(2,3)) //error it is in TDZ, cuz func exp is variable
 // console.log(addArrow(2,3)) //error it is in TDZ
 
@@ -63,7 +63,7 @@
 
 // //Example
 
-// if(!numProducts) deleteShoppingCart(); // cuz of hoisting at this place numProducts = undef, thats why this line executes.VERY DANGEROUS! Solution is simple don't use var 
+// if(!numProducts) deleteShoppingCart(); // cuz of hoisting at this place numProducts = undef, thats why this line executes.VERY DANGEROUS! Solution is simple don't use var
 
 // var numProducts = 10;
 
@@ -118,7 +118,7 @@
 //     year : 1991,
 //     calcAge: function () {
 //         console.log(2037 - this.year)
-        
+
 //         //function inside method
 //         // const self = this; // solution to this problem with jonas.calcAge()
 //         // const isMillenial = function (){
@@ -130,9 +130,9 @@
 //         }
 //         isMillenial()
 //     },
-    
+
 //     greet: () => console.log(`hey ${this.firstName}`) // never use arrow function as method (inside object) !
-    
+
 // }
 
 // jonas.greet()// Hey undefined,obj is not code block so parent of this func is window
@@ -146,9 +146,52 @@
 // addExpr(2,3)
 // addExpr(2,3,8,9) // args will be in func
 
-// // Lesson 98 - Primitives vs Object (Primitives vs. Reference types)
-//Primitives
-let age = 30;
-let oldAge = age;
-age = 31;
-console.log(age,oldAge)
+// // Lesson 99 - Primitives vs Object (Primitives vs. Reference types)
+// //Primitives
+// let age = 30;
+// let oldAge = age;
+// age = 31;
+// console.log(age, oldAge);
+
+// const me = {
+//   name: 'Petr',
+//   age: 40,
+// };
+// const friend = me;
+// friend.age = 27;
+// console.log('Friend:', friend);
+// console.log('Me:', me); // age is 27, cuz object is reference type
+
+// // Lesson 100 - Primitives vs Object in Practice
+
+// let lastName = 'Williams';
+// let oldLastName = lastName;
+// lastName = 'Davis';
+// console.log(lastName, oldLastName); // Davis Williams
+
+// const jessica = {
+//   firstName: 'Jessica',
+//   lastName: 'Williams',
+//   age: 27,
+// };
+
+// const marriedJessica = jessica;
+// marriedJessica.lastName = 'Davis';
+// console.log('Before marriage:', jessica);
+// console.log('After marriage:', marriedJessica); // both are Davis because object is reference type and both are pointing to the same object, object is not primitive value
+
+// Copying objects
+
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+const jessicaCopy = Object.assign({}, jessica2); // shallow copy, only first level, not deep copy
+jessicaCopy.lastName = 'Davis';
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+console.log('Before marriage:', jessica2);
+console.log('After marriage:', jessicaCopy); // family is the same in both objects, because it is reference type
