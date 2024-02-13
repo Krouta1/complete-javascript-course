@@ -75,3 +75,37 @@
 // var x = 1;
 // var y = 2;
 // const z = 3;
+
+// // Lesson 97 - this keywod in Practice
+
+// console.log(this); // window obj
+
+// const calcAge = function(birthYear){
+//     console.log(2037 - birthYear);
+//     console.log(this); // undefined
+// }
+// //calcAge(1991)
+
+// const calcAgeArrow = birthYear => {
+//     console.log(2037 - birthYear);
+//     console.log(this); //points to window obj, cuz parent is window
+// }
+// //calcAgeArrow(1991)
+
+// const petr = {
+//     year : 1991,
+//     calcAge: function(){
+//         console.log(this); // petr obj
+//         console.log(2037 - this.year);
+//     }
+// }
+
+// petr.calcAge() // calcAge point to obj that is calling it not the obj wich is written in
+// const matilda = {
+//     year : 1997
+// }
+// matilda.calcAge = petr.calcAge
+// matilda.calcAge()
+
+// const f = petr.calcAge;
+// f();// this keyword is undef
