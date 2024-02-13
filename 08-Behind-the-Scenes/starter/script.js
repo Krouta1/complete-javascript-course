@@ -109,3 +109,39 @@
 
 // const f = petr.calcAge;
 // f();// this keyword is undef
+
+// // Lesson 97 - Regular Func vs Arrow Func
+// var firstName = 'Matilda'// this is problem with the arrow func in jonas obj. Simply dont use var
+
+// const jonas = {
+//     firstName : 'Jonas',
+//     year : 1991,
+//     calcAge: function () {
+//         console.log(2037 - this.year)
+        
+//         //function inside method
+//         // const self = this; // solution to this problem with jonas.calcAge()
+//         // const isMillenial = function (){
+//         //     console.log(this.year >=1981 && this.year<=1996)
+//         // }
+//         //solution 2 coz arrow use this keyword from parent wiich is calcAge func
+//         const isMillenial = () => {
+//             console.log(this.year >=1981 && this.year<=1996)
+//         }
+//         isMillenial()
+//     },
+    
+//     greet: () => console.log(`hey ${this.firstName}`) // never use arrow function as method (inside object) !
+    
+// }
+
+// jonas.greet()// Hey undefined,obj is not code block so parent of this func is window
+// jonas.calcAge() // year is undefined
+
+// //arguments keyword
+// const addExpr = function (a,b){
+//     console.log(arguments)
+//     return a + b;
+// }
+// addExpr(2,3)
+// addExpr(2,3,8,9) // args will be in func
