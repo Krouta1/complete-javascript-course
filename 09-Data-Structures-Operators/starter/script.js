@@ -375,4 +375,41 @@ const restaurant = {
 
 // const { language, programmingLanguage = 'unknown' } = books[6];
 
-// Lesson - 105: The Spread Operator
+// Lesson 105 - Spread Operator
+
+const arr = [7, 8, 9]
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]]
+console.log(badNewArr)
+
+const newArr = [1,2, ...arr]
+console.log(newArr)
+
+console.log(...newArr);
+
+//new menu, important it is new array
+const newMenu = [...restaurant.mainMenu, 'Gnocci']
+console.log(newMenu);
+
+//create shallow copy of array
+const mainMenuCopy = [...restaurant.mainMenu]
+console.log(mainMenuCopy);
+
+//join two or more arrays
+const menu = [...restaurant.starterMenu,...restaurant.mainMenu]
+console.log(menu);
+
+//Iterables array, strings,maps,sets NOT objects
+
+const str = 'Jonas'
+const letters = [...str,' ','S.']
+console.log(letters);
+//console.log(`${...letters} Potter`); // you can only use spread to pass values to func or building array
+
+// const ingredients = [prompt("Let's make pasta! Ingredient 1?"),prompt("Let's make pasta! Ingredient 2?"),prompt("Let's make pasta! Ingredient 3?")]
+// restaurant.orderPasta(...ingredients)
+
+//it acually works with objects
+const newRestaurant = {foundedIn:2050,...restaurant, founder: 'Guseppe'}
+console.log(newRestaurant);
+
+
