@@ -250,6 +250,10 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
   openingHours: {
     thu: {
       open: 12,
@@ -375,41 +379,342 @@ const restaurant = {
 
 // const { language, programmingLanguage = 'unknown' } = books[6];
 
-// Lesson 105 - Spread Operator
+// // Lesson 105 - Spread Operator
 
-const arr = [7, 8, 9]
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]]
-console.log(badNewArr)
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
 
-const newArr = [1,2, ...arr]
-console.log(newArr)
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
 
-console.log(...newArr);
+// console.log(...newArr);
 
-//new menu, important it is new array
-const newMenu = [...restaurant.mainMenu, 'Gnocci']
-console.log(newMenu);
+// //new menu, important it is new array
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
 
-//create shallow copy of array
-const mainMenuCopy = [...restaurant.mainMenu]
-console.log(mainMenuCopy);
+// //create shallow copy of array
+// const mainMenuCopy = [...restaurant.mainMenu];
+// console.log(mainMenuCopy);
 
-//join two or more arrays
-const menu = [...restaurant.starterMenu,...restaurant.mainMenu]
-console.log(menu);
+// //join two or more arrays
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
 
-//Iterables array, strings,maps,sets NOT objects
+// //Iterables array, strings,maps,sets NOT objects
 
-const str = 'Jonas'
-const letters = [...str,' ','S.']
-console.log(letters);
-//console.log(`${...letters} Potter`); // you can only use spread to pass values to func or building array
+// const str = 'Jonas';
+// const letters = [...str, ' ', 'S.'];
+// console.log(letters);
+// //console.log(`${...letters} Potter`); // you can only use spread to pass values to func or building array
 
-// const ingredients = [prompt("Let's make pasta! Ingredient 1?"),prompt("Let's make pasta! Ingredient 2?"),prompt("Let's make pasta! Ingredient 3?")]
-// restaurant.orderPasta(...ingredients)
+// // const ingredients = [prompt("Let's make pasta! Ingredient 1?"),prompt("Let's make pasta! Ingredient 2?"),prompt("Let's make pasta! Ingredient 3?")]
+// // restaurant.orderPasta(...ingredients)
 
-//it acually works with objects
-const newRestaurant = {foundedIn:2050,...restaurant, founder: 'Guseppe'}
-console.log(newRestaurant);
+// //it acually works with objects
+// const newRestaurant = { foundedIn: 2050, ...restaurant, founder: 'Guseppe' };
+// console.log(newRestaurant);
 
+// //Lesson 107 - Rest Pattern and Parameters
 
+// //SPREAD, because on RIGHT side of =
+// const arr1 = [1, 2, ...[3, 4]];
+
+// //DESTRUCTURING
+
+// //REST, because on LEFT side of =
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others); //1 2 [3,4,5]
+
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood); //Pizza Risotto ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad']
+
+// //objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays); //{thu: {…}, fri: {…}}
+
+// //functions
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+//   console.log(sum);
+// };
+// add(2, 3);
+// add(5, 3, 7, 2);
+
+// const x = [23, 5, 7];
+// add(...x);
+
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// restaurant.orderPizza('mushrooms');
+
+// //Assignment - 4.1 Destructure the keywords property (array) of the first book from the books array into variables called mainKeyword and rest. The first keyword should be assigned to mainKeyword, and the rest of the keywords should be assigned to the rest variable (it should be an array).
+
+// const [mainKeyword, ...rest] = books[0].keywords;
+// console.log(books[0].keywords);
+// console.log(mainKeyword, rest);
+
+// //Assignment - 4.2 Destructure the second book from the books array into a variable called bookPublisher. The bookPublisher variable should be assigned with the value of the publisher property of the book object. Assign the rest of the properties to the restOfTheBook variable.
+
+// const { publisher: bookPublisher, ...restOfTheBook } = books[1];
+// console.log(bookPublisher);
+// console.log(books[1].publisher);
+
+// printBookAuthorsCount('Algorithms', 'Robert Sedgewick', 'Kevin Wayne');
+// function printBookAuthorsCount(title, ...authors) {
+//   console.log(`The book "${title}" has ${authors.length} authors`);
+// }
+
+//Lesson 108 - Short Circuiting (&& and ||)
+
+// //use any data type, return any data type, short-circuiting
+// console.log(3 || 'Jonas'); //3 if first value is truthy it will return first value
+// console.log('' || 'Jonas'); //Jonas
+// console.log(true || 0); //true
+// console.log(undefined || null); //null
+
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null); //Hello is first truthy value so it will return Hello
+
+// restaurant.numGuests = 23;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+//&& operator
+// console.log(0 && 'Jonas'); //0
+// console.log(7 && 'Jonas'); //Jonas
+// console.log('Hello' && 23 && null && 'Jonas'); //null
+
+// //Practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+// // better way to write above code
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+//Lesson 109 - Nullish Coalescing Operator (??)
+
+// restaurant.numGuests = 0;
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+//Nullish: null and undefined (NOT 0 or '')
+// const guestsCorrect = restaurant.numGuests ?? 10;
+
+//Assignment - 6.1 There are objects in the books array that don't have the onlineContent property at all. Loop over the books array, and log a string to the console in this format: "${title}" provides no data about its online content.
+
+// for (let i = 0; i < books.length; i++) {
+//   books[i].onlineContent ??
+//     console.log(
+//       `"${books[i].title} provides no data about its online content"`
+//     );
+// }
+
+//Lesson 110 - Logical Assignment Operators
+
+// const rest1 = {
+//   name: 'Classico Italiano',
+//   numGuests: 0,
+// };
+
+// const rest2 = {
+//   name: 'La pizza',
+//   owner: 'Francesco',
+// };
+
+// // rest1.numGuests = rest1.numGuests || 10;
+// // rest2.numGuests = rest2.numGuests || 10;
+
+// //OR assignment operator, more modern way to do above
+// rest1.numGuests ??= 10;
+// rest2.numGuests ||= 10;
+
+// rest1.name &&= 'Annoymous Restaurant'; //if name property is there then it will not change the value
+
+// console.log(rest1, rest2);
+
+//Lesson 111 - Coding Challenge #1
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// //1.
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
+
+// //2.
+// const [gk, ...fieldPlayers] = players1;
+// console.log(gk, fieldPlayers);
+
+// //3.
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
+
+// //4.
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// console.log(players1Final);
+
+// //5.
+// const { team1, x: draw, team2 } = game.odds;
+
+// //6.
+// const printGoals = function (...players) {
+//   console.log(`${players.length} goals were scored`);
+// };
+
+// //7.
+// team1 < team2 && console.log('Team 1 is more likely to win');
+
+//Lesson 112 - Looping Arrays: The for-of Loop
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// for (const item of menu) console.log(item); // i can use break and continue in for-of loop
+
+// //for-of loop with index
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`);
+// }
+
+//Lesson 113 - Enhanced Object Literals
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
+// console.log(openingHours);
+
+//Lesson 114 - Optional Chaining (?.)
+
+// if (restaurant.openingHours && restaurant.openingHours.mon) {
+//   console.log(restaurant.openingHours.mon.open);
+// }
+
+// //with optional chaining
+// console.log(restaurant.openingHours?.mon?.open);
+
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`On ${day}, we open at ${open}`);
+// }
+
+// //methods
+// console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+// //arrays
+// const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+// console.log(users[0]?.name ?? 'User array empty');
+
+//Lesson 115 - Looping Objects: Object Keys, Values, and Entries
+// const openingHours = {
+//   thu: {
+//     open: 12,
+//     close: 22,
+//   },
+//   fri: {
+//     open: 11,
+//     close: 23,
+//   },
+//   sat: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
+
+// //Property NAMES
+// const properties = Object.keys(openingHours); // ['thu', 'fri', 'sat']
+// console.log(properties);
+
+// let openStr = `We are open on ${properties.length} days: `;
+
+// for (const day of properties) {
+//   openStr += `${day}, `;
+// }
+
+// console.log(openStr); //We are open on 3 days: 0, 1, 2,
+
+// //Property VALUES
+// const values = Object.values(openingHours);
+// console.log(values);
+
+// //Entire object
+// const entries = Object.entries(openingHours);
+// console.log(entries);
+
+// for (const [day, { open, close }] of entries) {
+//   console.log(`On ${day} we open at ${open} and close at ${close}`);
+// }
+
+//Lesson 116 - Coding Challenge #2
+
+// //1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+// for (const [i, player] of game.scored.entries()) {
+//   console.log(`Goal ${i + 1}: ${player}`);
+// }
+
+// //2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+
+// let sum = 0;
+// const odds = Object.values(game.odds);
+// for (const odd of odds) sum += odd;
+// console.log(`Average odd is: ${sum / odds.length}`);
+
+// //3. Print the 3 odds to the console, but in a nice formatted way, exactly like this: Odd of victory Bayern Munich: 1.33 Odd of draw: 3.25 Odd of victory Borrussia Dortmund: 6.5
+
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamStr}: ${odd}`);
+// }
