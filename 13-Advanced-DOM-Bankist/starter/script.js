@@ -8,7 +8,8 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
-const openModal = function () {
+const openModal = function (e) {
+  e.preventDefault();
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
@@ -18,8 +19,10 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-for (let i = 0; i < btnsOpenModal.length; i++)
-  btnsOpenModal[i].addEventListener('click', openModal);
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
+
+// for (let i = 0; i < btnsOpenModal.length; i++)
+//   btnsOpenModal[i].addEventListener('click', openModal);
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -29,3 +32,85 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+//Lesson 187 - Selecting, Creating, and Deleting Elements
+
+//Selecting elements
+console.log(document.documentElement); //entire HTML document
+console.log(document.head); //head element
+console.log(document.body); //body element
+
+const header = document.querySelector('.header');
+const allSections = document.querySelectorAll('.section');
+console.log(allSections);
+
+document.getElementById('section--1');
+
+const allButtons = document.getElementsByTagName('button'); //HTMLCollection
+console.log(allButtons);
+
+document.getElementsByClassName('btn'); //HTMLCollection
+
+//Creating and inserting elements
+// .insertAdjacentHTML
+
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+// message.textContent = 'We use cookies for improved functionality and analytics.';
+message.innerHTML =
+  'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
+//header.prepend(message); //adds as first child
+header.append(message); //adds as last child
+//header.append(message.cloneNode(true)); //adds as last child
+//header.before(message); //adds as sibling before
+//header.after(message); //adds as sibling after
+
+//Delete elements
+document
+  .querySelector('.btn--close-cookie')
+  .addEventListener('click', function () {
+    message.remove();
+    // message.parentElement.removeChild(message); old way
+  });
+
+//Lesson 188 - Styles, Attributes and Classes
+
+//Styles
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(message.style.height); //empty string
+console.log(message.style.backgroundColor); //rgb(55, 56, 61) works with inline styles
+
+console.log(getComputedStyle(message).color); //rgb(255, 255, 255) works with all styles
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+//Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = 'Beautiful minimalist logo';
+
+//Non-standard
+console.log(logo.designer); //undefined
+console.log(logo.getAttribute('designer')); //Jonas
+
+logo.setAttribute('company', 'Bankist');
+
+console.log(logo.src); //http://
+console.log(logo.getAttribute('src')); //img/logo.png
+
+//Data attributes
+console.log(logo.dataset.versionNumber);
+
+//Classes
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c'); //not includes
