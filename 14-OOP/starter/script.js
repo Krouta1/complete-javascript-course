@@ -265,48 +265,48 @@
 
 //Lesson 221: Inheritance between "Classes": Object.create
 
-const PersonProto = {
-  calcAge() {
-    console.log(2037 - this.birthYear);
-  },
-  init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  },
-};
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },http://127.0.0.1:5500/
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
 
-const steven = Object.create(PersonProto);
-const StudentProto = Object.create(PersonProto);
-StudentProto.init = function (firstName, birthYear, course) {
-  PersonProto.init.call(this, firstName, birthYear);
-  this.course = course;
-};
+// const steven = Object.create(PersonProto);
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function (firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear);
+//   this.course = course;
+// };
 
-StudentProto.introduce = function () {
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-};
+// StudentProto.introduce = function () {
+//   console.log(`My name is ${this.firstName} and I study ${this.course}`);
+// };
 
-const jay = Object.create(StudentProto);
-jay.init('Jay', 2010, 'Computer Science');
-jay.introduce();
-jay.calcAge();
+// const jay = Object.create(StudentProto);
+// jay.init('Jay', 2010, 'Computer Science');
+// jay.introduce();
+// jay.calcAge();
 
-//Lesson 222: Another class example
+// //Lesson 222 - 225: Another class example
 
 class Account {
-  locale = navigator.language;
-  _movements = [];
-  _pin;
+  locale = navigator.language; // public field(instance)
+  #movements = []; //private field
+  #pin;//private field
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
+    this.#pin = pin;
   }
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
     return this;
   }
   withdraw(val) {
@@ -342,4 +342,9 @@ acc1.requestLoan(1000);
 console.log(acc1);
 console.log(acc1.getMovements());
 
-//Lesson 223: Coding challenge #4
+
+//Lesson 226: Chaining methods
+acc1.deposit(500).deposit(500).withdraw(400)
+
+//Coding Challenge #4
+// already done in challenge 3
